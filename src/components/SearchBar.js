@@ -7,7 +7,7 @@ function SearchBar() {
   const [result, setResult] = useState(null);
 
   const handleChange = async (e) => {
-    setQuery(e.target.value);
+    setQuery(e.target.value); // setQuery(e.target.value.toLowerCase());
     if (e.target.value.split(" ").length > 0) {
       try {
         const response = await axios.post(
@@ -29,7 +29,7 @@ function SearchBar() {
   const handleSearch = async () => {
     try {
       await axios.post("http://localhost:8000/documents", {
-        sentence: query,
+        sentence: query.toLowerCase(),
         metadata: {
           language: "English",
           country: "USA",
