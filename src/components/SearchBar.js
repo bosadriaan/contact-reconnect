@@ -11,7 +11,7 @@ function SearchBar() {
     if (e.target.value.split(" ").length > 0) {
       try {
         const response = await axios.post(
-          "http://localhost:8000/query_by_sentence",
+          "http://127.0.0.1:8080/query_by_sentence",
           {
             sentence: e.target.value,
             n_results: 5,
@@ -28,7 +28,7 @@ function SearchBar() {
 
   const handleSearch = async () => {
     try {
-      await axios.post("http://localhost:8000/documents", {
+      await axios.post("http://127.0.0.1:8080/documents", {
         sentence: query.toLowerCase(),
         metadata: {
           language: "English",
@@ -58,9 +58,9 @@ function SearchBar() {
       return (
         <div key={index} className="result-line">
           <div>
-            user: {result.metadatas[0][index].user_id} - distance:{" "}
+            {result.metadatas[0][index].user_id} :{" "}
             {isNaN(distance) ? result.distances[0][index] : distance.toFixed(2)}{" "}
-            : {document}
+            - {document}
           </div>
         </div>
       );

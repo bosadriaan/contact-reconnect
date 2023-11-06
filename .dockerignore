@@ -1,0 +1,16 @@
+# Ignore node modules, as they will be installed inside the container
+node_modules
+
+# Ignore any logs
+*.log
+
+# Ignore local environment files
+.env.local
+.env.development
+
+# Ignore the build directory if it exists
+build
+
+# Ignore any editor/IDE directories
+.idea
+.vscode
