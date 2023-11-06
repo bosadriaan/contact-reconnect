@@ -1,0 +1,1 @@
+"HOST='0.0.0.0' DISABLE_HOST_CHECK=true react-scripts start" added to package.json to run in Railway, not secure
