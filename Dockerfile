@@ -1,4 +1,4 @@
-# Use an official Node runtime as the base image
+# Use an official Node runtime as a base image
 FROM node:14-slim
 
 # Set the working directory in the container to /app
@@ -10,8 +10,14 @@ COPY . /app/
 # Install any needed packages specified in package.json
 RUN npm install
 
-# Make port 3000 available to the world outside this container
-EXPOSE 3000
+# Build the app
+RUN npm run build
 
-# Run npm start when the container launches
-CMD ["npm", "start"]
+# Install serve package globally to serve the static files
+RUN npm install -g serve
+
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
+
+# Run serve when the container launches
+CMD ["serve", "-s", "build", "-l", "5000"]
