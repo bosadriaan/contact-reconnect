@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
+
 function SearchBar() {
   const [query, setQuery] = useState("");
   const [result, setResult] = useState(null);
@@ -11,7 +14,7 @@ function SearchBar() {
     if (e.target.value.split(" ").length > 0) {
       try {
         const response = await axios.post(
-          "http://127.0.0.1:8080/query_by_sentence",
+          `${API_URL}/query_by_sentence`,
           {
             sentence: e.target.value,
             n_results: 5,
@@ -28,7 +31,7 @@ function SearchBar() {
 
   const handleSearch = async () => {
     try {
-      await axios.post("http://127.0.0.1:8080/documents", {
+      await axios.post(`${API_URL}/documents`, {
         sentence: query.toLowerCase(),
         metadata: {
           language: "English",
@@ -78,7 +81,7 @@ function SearchBar() {
           className="search-bar"
         />
         <button onClick={handleSearch} className="search-button">
-          Search
+          Add to queries
         </button>
       </div>
       <div className="search-result">{renderResult()}</div>
